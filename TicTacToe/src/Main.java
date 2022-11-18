@@ -14,67 +14,68 @@ public class Main {
 			gameMenu();
 			
 			String userInput = scanner.nextLine();
-			
-			switch(userInput) {
-			case "1":
-				playerVsPlayer(scanner);
-				break;
-			case "2":
-				playerVsAi(scanner);
-				break;
-			case "3": 
-				displayRules();
-				break;
-			case "4": 
-				System.out.println("Exiting game... Bye!\n");
-				gameIsOn = false;
-				break;
-			default: 
-				System.out.println("Unknown input \n");
-				break;
+
+			switch (userInput) {
+				case "1" -> playerVsPlayer(scanner);
+				case "2" -> playerVsAi(scanner);
+				case "3" -> displayRules();
+				case "4" -> {
+					System.out.println("Exiting game... Bye!\n");
+					gameIsOn = false;
+				}
+				default -> System.out.println("Unknown input \n");
 			}
 			
 		}
 		
 		scanner.close();
-	};
+	}
 
 	private static void gameMenu() {
 		
-		System.out.println("\n xXxXxXxXxXxxXxXxXxXxXxxXxXxXxXxXxxXxXxXxXxXxxXxXxXxXxXxxXxX \n"		+ 		 
-						   " \r\n"
-						   + "  _______ _          _______             _______         \r\n"
-						   + " |__   __(_)        |__   __|           |__   __|        \r\n"
-						   + "    | |   _  ___ ______| | __ _  ___ ______| | ___   ___ \r\n"
-						   + "    | |  | |/ __|______| |/ _` |/ __|______| |/ _ \\ / _ \\\r\n"
-						   + "    | |  | | (__       | | (_| | (__       | | (_) |  __/\r\n"
-						   + "    |_|  |_|\\___|      |_|\\__,_|\\___|      |_|\\___/ \\___|\r\n"
-						   + "                                                         \r\n"
-						   + "                                                         \r\n"
-						   + " \n"			+		 
-						   " oOoOoOoOoOooOoOoOoOoOooOoOoOoOoOooOoOoOoOoOooOoOoOoOoOooOoOoO \n\n"			+		 
-						   " 1. Player vs Player \n"	+ 
-						   " 2. Player vs AI \n"		+ 	 
-						   " 3. Game Rules \n"		+ 		 
-						   " 4. Exit");
+		System.out.println("""
+
+				 xXxXxXxXxXxxXxXxXxXxXxxXxXxXxXxXxxXxXxXxXxXxxXxXxXxXxXxxXxX\s
+				 \r
+				  _______ _          _______             _______         \r
+				 |__   __(_)        |__   __|           |__   __|        \r
+				    | |   _  ___ ______| | __ _  ___ ______| | ___   ___ \r
+				    | |  | |/ __|______| |/ _` |/ __|______| |/ _ \\ / _ \\\r
+				    | |  | | (__       | | (_| | (__       | | (_) |  __/\r
+				    |_|  |_|\\___|      |_|\\__,_|\\___|      |_|\\___/ \\___|\r
+				                                                         \r
+				                                                         \r
+				\s
+				 oOoOoOoOoOooOoOoOoOoOooOoOoOoOoOooOoOoOoOoOooOoOoOoOoOooOoOoO\s
+
+				 1. Player vs Player\s
+				 2. Player vs AI\s
+				 3. Game Rules\s
+				 4. Exit""");
 	}
 	
 	private static void displayRules() {
 		
-		System.out.println(" ---------------------" + "\n"+
-						   " RULES FOR TIC-TAC-TOE" + "\n"+
-						   " ---------------------" + "\n");
+		System.out.println("""
+				 ---------------------
+				 RULES FOR TIC-TAC-TOE
+				 ---------------------
+				""");
 
-		System.out.println(" 1|2|3" + "\n" + 
-						   " -+-+-" + "\n" +
-						   " 4|5|6" + "\n" +
-						   " -+-+-" + "\n" +
-						   " 7|8|9" + "\n" );
+		System.out.println("""
+				 1|2|3
+				 -+-+-
+				 4|5|6
+				 -+-+-
+				 7|8|9
+				""");
 		
-		System.out.println(" 1. The game is played on a grid that's 3 squares by 3 squares." + "\n" + 
-						   " 2. You are X, your friend (or the computer in this case) is O. Players take turns putting their marks in empty squares." + "\n" + 
-						   " 3. The first player to get 3 of her marks in a row (up, down, across, or diagonally) is the winner." + "\n" +
-						   " 4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie. \n" );
+		System.out.println("""
+				 1. The game is played on a grid that's 3 squares by 3 squares.
+				 2. You are X, your friend (or the computer in this case) is O. Players take turns putting their marks in empty squares.
+				 3. The first player to get 3 of her marks in a row (up, down, across, or diagonally) is the winner.
+				 4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie.\s
+				""");
 
 	}
 
@@ -116,12 +117,11 @@ public class Main {
 							 };
 		
 		int coinFlip = (int) (Math.floor(Math.random()*2)+ 1);
-		
-		if (coinFlip > 1) {
-			
-			printBoard(gameBoard);
 
-			
+		printBoard(gameBoard);
+		if (coinFlip > 1) {
+
+
 			while (true) {
 
 				playerOneTurn(gameBoard, scanner);
@@ -141,9 +141,7 @@ public class Main {
 			}
 			
 		} else {
-			
-			printBoard(gameBoard);
-			
+
 			while (true) {
 
 				playerTwoTurn(gameBoard, scanner);
@@ -169,8 +167,12 @@ public class Main {
 		if (checkWinner(gameBoard, 'X')) {
 
 			printBoard(gameBoard);
-			System.out.println("\n Player wins!" +
-							   "\n Going back to main menu... \n\n");
+			System.out.println("""
+
+					 Player wins!
+					 Going back to main menu...\s
+
+					""");
 			pause(150);
 
 			return true;
@@ -179,19 +181,23 @@ public class Main {
 		if (checkWinner(gameBoard, 'O')) {
 
 			printBoard(gameBoard);
-			System.out.println("\n AI wins!" +
-							   "\n Going back to main menu... \n\n");
+			System.out.println("""
+
+					 AI wins!
+					 Going back to main menu...\s
+
+					""");
 			pause(150);
 
 			return true;
 		}
 
-		for (int i = 0; i < gameBoard.length; i++) {
-			
-			for (int j = 0; j < gameBoard[i].length; j++) {
-				
-				if (gameBoard[i][j] == ' ') {
-					
+		for (char[] chars : gameBoard) {
+
+			for (char aChar : chars) {
+
+				if (aChar == ' ') {
+
 					return false;
 				}
 			}
@@ -199,8 +205,12 @@ public class Main {
 
 		printBoard(gameBoard);
 		
-		System.out.println("\n Game is a Tie!" +
-						   "\n Going back to main menu...\n\n");
+		System.out.println("""
+
+				 Game is a Tie!
+				 Going back to main menu...
+
+				""");
 		
 		pause(150);
 		
@@ -214,8 +224,12 @@ public class Main {
 
 			printBoard(gameBoard);
 
-			System.out.println("\n Player X wins!" +
-							   "\n Going back to main menu...\n\n");
+			System.out.println("""
+
+					 Player X wins!
+					 Going back to main menu...
+
+					""");
 			
 			pause(150);
 
@@ -224,27 +238,35 @@ public class Main {
 
 		if (checkWinner(gameBoard, 'O')) {
 
-			System.out.println("\n Player O wins!" +
-							   "\n Going back to main menu...\n\n");
+			System.out.println("""
+
+					 Player O wins!
+					 Going back to main menu...
+
+					""");
 			
 			pause(150);
 
 			return true;
 		}
 
-		for (int i = 0; i < gameBoard.length; i++) {
-			
-			for (int j = 0; j < gameBoard[i].length; j++) {
-				
-				if (gameBoard[i][j] == ' ') 
+		for (char[] chars : gameBoard) {
+
+			for (char aChar : chars) {
+
+				if (aChar == ' ')
 					return false;
 			}
 		}
 
 		printBoard(gameBoard);
 	
-		System.out.println("\n Game is a Tie!" +
-						   "\n Going back to main menu...\n\n");
+		System.out.println("""
+
+				 Game is a Tie!
+				 Going back to main menu...
+
+				""");
 		
 		pause(150);
 		
@@ -253,20 +275,17 @@ public class Main {
 	}
 
 	private static boolean checkWinner(char[][] gameBoard, char input) {
-		
-		if ((gameBoard[0][0] == input && gameBoard[0][1] == input && gameBoard[0][2] == input)
-		 || (gameBoard[1][0] == input && gameBoard[1][1] == input && gameBoard[1][2] == input)
-		 || (gameBoard[2][0] == input && gameBoard[2][1] == input && gameBoard[2][2] == input) 
 
-		 ||	(gameBoard[0][0] == input && gameBoard[1][0] == input && gameBoard[2][0] == input)
-	  	 || (gameBoard[0][1] == input && gameBoard[1][1] == input && gameBoard[2][1] == input)
-	 	 || (gameBoard[0][2] == input && gameBoard[1][2] == input && gameBoard[2][2] == input) 
+		return (gameBoard[0][0] == input && gameBoard[0][1] == input && gameBoard[0][2] == input)
+				|| (gameBoard[1][0] == input && gameBoard[1][1] == input && gameBoard[1][2] == input)
+				|| (gameBoard[2][0] == input && gameBoard[2][1] == input && gameBoard[2][2] == input)
 
-	 	 || (gameBoard[0][0] == input && gameBoard[1][1] == input && gameBoard[2][2] == input)
- 		 || (gameBoard[0][2] == input && gameBoard[1][1] == input && gameBoard[2][0] == input))
-			return true;
-		else
-			return false;
+				|| (gameBoard[0][0] == input && gameBoard[1][0] == input && gameBoard[2][0] == input)
+				|| (gameBoard[0][1] == input && gameBoard[1][1] == input && gameBoard[2][1] == input)
+				|| (gameBoard[0][2] == input && gameBoard[1][2] == input && gameBoard[2][2] == input)
+
+				|| (gameBoard[0][0] == input && gameBoard[1][1] == input && gameBoard[2][2] == input)
+				|| (gameBoard[0][2] == input && gameBoard[1][1] == input && gameBoard[2][0] == input);
 	}
 
 	private static void aiTurn(char[][] gameBoard) {
@@ -276,15 +295,12 @@ public class Main {
 		Random random = new Random();
 		
 		int aiMove;
-		
-		while (true) {
+
+		do {
 
 			aiMove = random.nextInt(9) + 1;
 
-			if (canPlace(gameBoard, Integer.toString(aiMove)))
-				break;
-
-		}
+		} while (!canPlace(gameBoard, Integer.toString(aiMove)));
 
 		System.out.println("\n AI chose " + aiMove);
 
@@ -293,29 +309,18 @@ public class Main {
 
 	private static boolean canPlace(char[][] gameBoard, String position) {
 
-		switch (position) {
-		
-		case "1":
-			return (gameBoard[0][0] == ' ');
-		case "2":
-			return (gameBoard[0][1] == ' ');
-		case "3":
-			return (gameBoard[0][2] == ' ');
-		case "4":
-			return (gameBoard[1][0] == ' ');
-		case "5":
-			return (gameBoard[1][1] == ' ');
-		case "6":
-			return (gameBoard[1][2] == ' ');
-		case "7":
-			return (gameBoard[2][0] == ' ');
-		case "8":
-			return (gameBoard[2][1] == ' ');
-		case "9":
-			return (gameBoard[2][2] == ' ');
-		default:
-			return false;
-		}
+		return switch (position) {
+			case "1" -> (gameBoard[0][0] == ' ');
+			case "2" -> (gameBoard[0][1] == ' ');
+			case "3" -> (gameBoard[0][2] == ' ');
+			case "4" -> (gameBoard[1][0] == ' ');
+			case "5" -> (gameBoard[1][1] == ' ');
+			case "6" -> (gameBoard[1][2] == ' ');
+			case "7" -> (gameBoard[2][0] == ' ');
+			case "8" -> (gameBoard[2][1] == ' ');
+			case "9" -> (gameBoard[2][2] == ' ');
+			default -> false;
+		};
 
 	}
 
@@ -359,39 +364,18 @@ public class Main {
 	}
 
 	private static void placeMove(char[][] gameBoard, String position, char input) {
-		
+
 		switch (position) {
-		
-		case "1":
-			gameBoard[0][0] = input;
-			break;
-		case "2":
-			gameBoard[0][1] = input;
-			break;
-		case "3":
-			gameBoard[0][2] = input;
-			break;
-		case "4":
-			gameBoard[1][0] = input;
-			break;
-		case "5":
-			gameBoard[1][1] = input;
-			break;
-		case "6":
-			gameBoard[1][2] = input;
-			break;
-		case "7":
-			gameBoard[2][0] = input;
-			break;
-		case "8":
-			gameBoard[2][1] = input;
-			break;
-		case "9":
-			gameBoard[2][2] = input;
-			break;
-		default:
-			
-			System.out.println(" I dont understand :(");
+			case "1" -> gameBoard[0][0] = input;
+			case "2" -> gameBoard[0][1] = input;
+			case "3" -> gameBoard[0][2] = input;
+			case "4" -> gameBoard[1][0] = input;
+			case "5" -> gameBoard[1][1] = input;
+			case "6" -> gameBoard[1][2] = input;
+			case "7" -> gameBoard[2][0] = input;
+			case "8" -> gameBoard[2][1] = input;
+			case "9" -> gameBoard[2][2] = input;
+			default -> System.out.println(" I dont understand :(");
 		}
 	}
 
