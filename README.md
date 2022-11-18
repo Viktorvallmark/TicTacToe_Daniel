@@ -25,4 +25,4 @@ Original:
 ![anotherOldCase](https://user-images.githubusercontent.com/91593947/202800142-6f82e662-d3d6-4fdd-b2a3-a0868272e667.png)
 
 
-As one can see, the condensed version is easier to comprehend and look at.
+As one can see, the condensed version is easier to comprehend and look at. The code on the whole complies with code conventions and the tasks from the teacher. The code could have been divided into, in my opinion two more classes, so as to adhere to MVC more closely. I would've done the Main class that runs the program, done the calculations of who wins in one class and one class that draws the board. In this case I don't put too much stress on this divide because the code is fairly small and non-complex and having to check different files instead of just scrolling further down is more cumbersome in my opinion.
